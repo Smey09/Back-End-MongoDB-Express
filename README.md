@@ -24,6 +24,9 @@ cd Back-End-MongoDB-Express
 # Install dependencies
 npm i or yarn install
 
+#Create file .env
+MONGODB_URI=mongodb+srv://<database-name>:<your-password>@bookscluster.xfo1s.mongodb.net/
+
 # Start the development server
 npm run dev
 
