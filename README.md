@@ -28,16 +28,20 @@ npm i or yarn install
 npm run dev
 
 .
-├── .vscode/            # Visual Studio Code configuration files
-├── config_modules/     # Configuration-related modules
-├── controllers/        # Request handling logic
-├── middleware/         # Middleware functions
-├── models/             # Data models or schemas
-├── routes/             # Route definitions
-├── .env                # Environment variables
-├── .gitignore          # Git ignore file
-├── LICENSE             # Licensing information
-├── nodemon.json        # Nodemon configuration
-├── package.json        # Project metadata and dependencies
-├── tsconfig.json       # TypeScript compiler options
-└── yarn.lock           # Yarn lock file
+├── .vscode/                # Visual Studio Code configuration files
+├── node_modules/
+├── src/
+│   ├── config/             # Configuration-related modules
+│   ├── controllers/        # Request handling logic
+│   ├── middleware/         # Middleware functions
+│   ├── models/             # Data models or schemas
+│   ├── routes/             # Route definitions
+│   └── index.ts   
+├── .env                    # Environment variables
+├── .gitignore              # Git ignore file
+├── LICENSE                 # Licensing information
+├── nodemon.json            # Nodemon configuration
+├── package.json            # Project metadata and dependencies
+├── tsconfig.json           # TypeScript compiler options
+└── yarn.lock               # Yarn lock file
+
