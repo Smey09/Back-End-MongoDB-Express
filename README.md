@@ -39,6 +39,7 @@ npm run dev
 │   ├── middleware/         # Middleware functions
 │   ├── models/             # Data models or schemas
 │   ├── routes/             # Route definitions
+│   ├── utils/              # Utils CustomError
 │   └── index.ts   
 ├── .env                    # Environment variables
 ├── .gitignore              # Git ignore file
