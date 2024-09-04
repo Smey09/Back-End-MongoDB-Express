@@ -3,11 +3,44 @@ import { ObjectId } from "mongodb";
 import { itemsCollection } from "../config/database";
 import { Item } from "../models/itemsModels";
 
-// GET: Get all items
-export const getAllItems = async (_req: Request, res: Response) => {
+// GET: Get all items with pagination, filtering, and sorting
+export const getAllItems = async (req: Request, res: Response) => {
   try {
-    const items = await itemsCollection.find({}).toArray();
-    res.json(items);
+    // Pagination parameters
+    const page = parseInt(req.query.page as string) || 1; // Default to page 1
+    const limit = parseInt(req.query.limit as string) || 5; // Default to 5 items per page
+    const skip = (page - 1) * limit;
+
+    // Filtering
+    const category = req.query.category as string;
+
+    // Sorting parameters
+    const sortField = (req.query.sortField as string) || "price";
+    const sortOrder = req.query.sortOrder === "desc" ? -1 : 1; // Default to ascending order
+
+    // Build the query object
+    const query: any = {};
+    if (category) {
+      query.category = category;
+    }
+
+    // Fetch items with pagination, filtering, and sorting
+    const items = await itemsCollection
+      .find(query)
+      .sort({ [sortField]: sortOrder }) // Sort by the specified field and order
+      .skip(skip)
+      .limit(limit)
+      .toArray();
+
+    // Get total item count for pagination info
+    const totalItems = await itemsCollection.countDocuments(query);
+
+    res.json({
+      page,
+      totalPages: Math.ceil(totalItems / limit),
+      totalItems,
+      items,
+    });
   } catch (err) {
     res.status(500).send("Error retrieving items");
   }
