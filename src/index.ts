@@ -1,0 +1,25 @@
+import express from "express";
+import { connectToMongoDB } from "./config/database";
+import itemRoutes from "./routes/itemRoutes.routes";
+import { logger } from "./middleware/logger";
+
+const app = express();
+const PORT = 4000;
+
+// Middleware to parse JSON bodies
+app.use(express.json());
+
+// Global middleware for logging request time
+app.use(logger);
+
+// Connect to MongoDB
+
+connectToMongoDB();
+
+// Use item routes
+app.use("/api/v1", itemRoutes);
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
