@@ -1,0 +1,10 @@
+Example Query Parameters
+
+    Pagination: 
+        - ?page=2&limit=5
+    Filtering by category: 
+        - ?category=phone
+    Sorting by price in descending order: 
+        - ?sortField=price&sortOrder=desc
+    Sorting by stock in ascending order: 
+        - ?sortField=stock&sortOrder=asc
