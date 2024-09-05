@@ -15,9 +15,9 @@ export const getAllItems = async (
   next: NextFunction
 ) => {
   try {
-    const page = parseInt(req.query.page as string) || 1;
+    const currentPage = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 5;
-    const skip = (page - 1) * limit;
+    const skip = (currentPage - 1) * limit;
 
     const category = req.query.category as string;
     const sortField = (req.query.sortField as string) || "price";
@@ -38,7 +38,7 @@ export const getAllItems = async (
     const totalItems = await itemsCollection.countDocuments(query);
 
     res.json({
-      page,
+      currentPage,
       totalPages: Math.ceil(totalItems / limit),
       totalItems,
       items,
