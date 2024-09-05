@@ -6,7 +6,9 @@ import { itemsCollection } from "../config/database";
 import { Item } from "../models/itemsModels";
 import CustomError from "../utils/CustomError";
 
-// GET: Get all items with pagination, filtering, and sorting
+//! GET: Get all items with pagination, filtering, and sorting
+//*-----------------------------------------------------------------------
+
 export const getAllItems = async (
   req: Request,
   res: Response,
@@ -46,7 +48,9 @@ export const getAllItems = async (
   }
 };
 
-// GET: Get a single item by ID
+//! GET: Get a single item by ID
+//*-----------------------------------------------------------------------
+
 export const getItemById = async (
   req: Request,
   res: Response,
@@ -67,7 +71,9 @@ export const getItemById = async (
   }
 };
 
-// POST: Create a new item
+//! POST: Create a new item
+//*-----------------------------------------------------------------------
+
 export const createItem = async (
   req: Request,
   res: Response,
@@ -88,7 +94,9 @@ export const createItem = async (
   }
 };
 
-// PUT: Update an existing item by ID
+//* PUT: Update an existing item by ID
+//! -----------------------------------------------------------------------
+
 export const updateItem = async (
   req: Request,
   res: Response,
@@ -114,7 +122,9 @@ export const updateItem = async (
   }
 };
 
-// DELETE: Delete an item by ID
+//* DELETE: Delete an item by ID
+//! -----------------------------------------------------------------------
+
 export const deleteItem = async (
   req: Request,
   res: Response,
