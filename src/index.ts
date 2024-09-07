@@ -3,7 +3,6 @@ import { connectToMongoDB } from "./config/database";
 import itemRoutes from "./routes/itemRoutes.routes";
 import { logger } from "./middleware/logger";
 import errorHandler from "./middleware/handleError";
-import path from "path";
 
 const app = express();
 const PORT = 4000;
