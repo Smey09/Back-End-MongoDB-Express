@@ -2,6 +2,8 @@ import express from "express";
 import { connectToMongoDB } from "./config/database";
 import itemRoutes from "./routes/itemRoutes.routes";
 import { logger } from "./middleware/logger";
+import errorHandler from "./middleware/handleError";
+import path from "path";
 
 const app = express();
 const PORT = 4000;
@@ -12,12 +14,9 @@ app.use(express.json());
 // Global middleware for logging request time
 app.use(logger);
 
-// Connect to MongoDB
-
 connectToMongoDB();
-
-// Use item routes
 app.use("/api/v1", itemRoutes);
+app.use(errorHandler); // globle Handler Error
 
 // Start the server
 app.listen(PORT, () => {

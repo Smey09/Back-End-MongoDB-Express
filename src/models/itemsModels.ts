@@ -6,4 +6,5 @@ export interface Item {
   price: number;
   category: string;
   stock: number;
+  image?: string; // Optional image field (base64 string)
 }
