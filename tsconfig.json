@@ -7,6 +7,12 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "skipLibCheck": true
-  }
+    "skipLibCheck": true,
+    "jsx": "react-jsx",
+    "moduleResolution": "node", // Ensures proper resolution of modules
+    "resolveJsonModule": true, // Allows importing JSON files
+    "noEmit": true // Prevents emitting files (useful during development)
+  },
+  "include": ["src/**/*"], // Includes all files in the src directory
+  "exclude": ["node_modules", "dist"] // Excludes node_modules and dist directory
 }
