@@ -9,7 +9,6 @@
     { "src": "/(.*)", "dest": "/public/$1" }
   ],
   "env": {
-    "MONGODB_URI": "@mongodb-uri",
-    "ANOTHER_ENV_VAR": "@another-env-var"
+    "MONGODB_URI": "@mongodb-uri"
   }
 }
