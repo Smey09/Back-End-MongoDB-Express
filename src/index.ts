@@ -15,7 +15,7 @@ app.use(logger);
 
 connectToMongoDB();
 app.use("/api/v1", itemRoutes);
-app.use(errorHandler); // Place this after all routes
+app.use(errorHandler); // globle Handler Error
 
 // Start the server
 app.listen(PORT, () => {

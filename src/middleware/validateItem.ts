@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from "express";
 import {
   createItemSchema,
   updateItemSchema,
-} from "../controllers/validators/itemValidator";
+} from "../validators/itemValidator";
 
 export const validateCreateItem = async (
   req: Request,

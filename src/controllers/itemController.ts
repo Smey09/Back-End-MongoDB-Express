@@ -15,19 +15,31 @@ export const getAllItems = async (
   next: NextFunction
 ) => {
   try {
-    const currentPage = parseInt(req.query.page as string) || 1;
+    // 1 Create Paginations
+    const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 5;
-    const skip = (currentPage - 1) * limit;
+    const skip = (page - 1) * limit;
 
+    // 2 Filter
     const category = req.query.category as string;
     const sortField = (req.query.sortField as string) || "price";
     const sortOrder = req.query.sortOrder === "desc" ? -1 : 1;
 
+    // 3 short min and mixStock
+    const minStock = parseInt(req.query.minStock as string) || 0;
+    const maxStock =
+      parseInt(req.query.maxStock as string) || Number.MAX_SAFE_INTEGER;
+
     const query: any = {};
     if (category) {
-      query.category = category;
+      query.category = { $regex: new RegExp(category, "i") };
     }
 
+    if (minStock || maxStock) {
+      query.stock = { $gte: minStock, $lte: maxStock };
+    }
+
+    // 4 short Itmes
     const items = await itemsCollection
       .find(query)
       .sort({ [sortField]: sortOrder })
@@ -37,8 +49,9 @@ export const getAllItems = async (
 
     const totalItems = await itemsCollection.countDocuments(query);
 
-    res.json({
-      currentPage,
+    // 5 push data to clind
+    res.status(200).json({
+      currentPage: page,
       totalPages: Math.ceil(totalItems / limit),
       totalItems,
       items,
@@ -94,8 +107,8 @@ export const createItem = async (
   }
 };
 
-//* PUT: Update an existing item by ID
-//! -----------------------------------------------------------------------
+//! PUT: Update an existing item by ID
+//* -----------------------------------------------------------------------
 
 export const updateItem = async (
   req: Request,
@@ -138,8 +151,8 @@ export const deleteItem = async (
     if (result.deletedCount === 0) {
       throw new CustomError("Item not found", 404);
     }
-
-    res.send("Item deleted successfully");
+    
+    res.status(200).json({ message: "Item deleted successfully"});
   } catch (err) {
     next(new CustomError("Error deleting item", 500));
   }
