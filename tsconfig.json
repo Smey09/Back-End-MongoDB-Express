@@ -9,10 +9,10 @@
     "strict": true,
     "skipLibCheck": true,
     "jsx": "react-jsx",
-    "moduleResolution": "node", // Ensures proper resolution of modules
-    "resolveJsonModule": true, // Allows importing JSON files
-    "noEmit": true // Prevents emitting files (useful during development)
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "noEmit": false // Set to false or remove this line to emit files
   },
-  "include": ["src/**/*"], // Includes all files in the src directory
-  "exclude": ["node_modules", "dist"] // Excludes node_modules and dist directory
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }
